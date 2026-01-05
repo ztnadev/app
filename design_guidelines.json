@@ -1,0 +1,154 @@
+{
+  "identity": {
+    "persona": "E1",
+    "mission": "Create a top 1% 'Cyber-Finance Command Center' that feels empowering, futuristic, and high-energy.",
+    "principles": [
+      "Fusion over Imitation: Mix Fintech precision with Cyberpunk aesthetics.",
+      "Emotion First: Every interaction should feel 'powerful' and 'instant'.",
+      "Content is King: Data is the hero; style supports the data.",
+      "Zoom In: Focus on the numbers that matter.",
+      "Negative Space: Use deep black voids to make neon pop.",
+      "Contrast: High contrast is non-negotiable for accessibility and vibe."
+    ]
+  },
+  "typography": {
+    "strategy": "The Editorial Future",
+    "fonts": {
+      "headings": {
+        "family": "Outfit, sans-serif",
+        "weights": ["400", "700", "900"],
+        "usage": "Main headers, section titles, big stats. Use tight tracking."
+      },
+      "body": {
+        "family": "Inter, sans-serif",
+        "weights": ["400", "500"],
+        "usage": "Paragraphs, labels, UI text."
+      },
+      "mono": {
+        "family": "JetBrains Mono, monospace",
+        "weights": ["400", "700"],
+        "usage": "Financial data, currency, credit card numbers, dates."
+      }
+    },
+    "rules": [
+      "Headings > 32px must use tracking-tight.",
+      "Overlines must be uppercase, text-xs, and tracking-widest.",
+      "Never use Inter for H1-H3."
+    ]
+  },
+  "colors": {
+    "theme": "dark",
+    "palette": {
+      "background": {
+        "default": "#020617",
+        "paper": "#0F172A",
+        "subtle": "#1E293B"
+      },
+      "primary": {
+        "main": "#8B5CF6",
+        "light": "#A78BFA",
+        "dark": "#7C3AED",
+        "contrast": "#FFFFFF"
+      },
+      "secondary": {
+        "main": "#06B6D4",
+        "light": "#22D3EE",
+        "dark": "#0891B2"
+      },
+      "accent": {
+        "pink": "#EC4899",
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "error": "#EF4444"
+      },
+      "text": {
+        "primary": "#F8FAFC",
+        "secondary": "#94A3B8",
+        "muted": "#64748B"
+      }
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)",
+      "glass": "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+      "glow": "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%)"
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": [
+      {
+        "name": "Glassmorphism (Crystal)",
+        "classes": "bg-slate-950/50 backdrop-blur-xl border border-white/10 shadow-2xl"
+      },
+      {
+        "name": "Neon Border",
+        "classes": "border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+      }
+    ],
+    "decorations": [
+      "Use 'Tracing Beam' effects on cards (animated borders).",
+      "Use subtle noise textures on backgrounds to avoid banding.",
+      "Use massive colored glows behind key sections (hero, charts)."
+    ]
+  },
+  "layout": {
+    "grid_system": {
+      "dashboard": "Mode B: Control Room Grid. Dense, gap-4, full height widgets.",
+      "marketing": "Mode A: Tetris Grid. Asymmetric, gap-8, negative space."
+    },
+    "spacing": {
+      "scale": "Generous. Use p-6 or p-8 for cards. p-12 for sections.",
+      "rules": "Containers with borders MUST have internal padding."
+    }
+  },
+  "components": {
+    "library": "shadcn/ui",
+    "customization_rules": [
+      "Radius: rounded-xl or rounded-2xl for a modern feel.",
+      "Shadows: Colored shadows (e.g., shadow-purple-500/20).",
+      "Inputs: bg-slate-900/50 border-slate-700 focus:border-purple-500 focus:ring-purple-500/20.",
+      "Buttons: Pill-shaped or slightly rounded. Primary buttons should have a subtle gradient or glow."
+    ],
+    "specific_overrides": {
+      "Card": "Remove default bg. Use glassmorphism classes.",
+      "Dialog": "Backdrop blur-xl. Border-white/10.",
+      "Table": "Compact rows. Hover: bg-white/5."
+    }
+  },
+  "charts": {
+    "library": "recharts",
+    "style": {
+      "type": "Neon Lines",
+      "colors": ["#8B5CF6", "#06B6D4", "#EC4899", "#10B981"],
+      "grid": "stroke-slate-800 stroke-dasharray-3-3",
+      "tooltip": "bg-slate-900 border-slate-700 text-slate-200 shadow-xl"
+    }
+  },
+  "motion": {
+    "library": "framer-motion",
+    "types": [
+      "Page Transitions: Opacity + slight Y-axis slide.",
+      "List Stagger: Stagger children by 0.05s.",
+      "Hover: Scale 1.02 + Glow intensity increase."
+    ]
+  },
+  "images": {
+    "source": "Pexels/Unsplash (via tool)",
+    "assets": {
+      "hero_bg": "https://images.pexels.com/photos/18069697/pexels-photo-18069697.png",
+      "auth_bg": "https://images.pexels.com/photos/17485705/pexels-photo-17485705.png",
+      "credit_card_3d": "https://images.pexels.com/photos/11342521/pexels-photo-11342521.jpeg",
+      "user_avatar": "https://images.pexels.com/photos/4565706/pexels-photo-4565706.jpeg"
+    }
+  },
+  "universal_guidelines": [
+    "Do not use gradients for text unless it's a massive headline.",
+    "Do not use 'Inter' for headings.",
+    "Do not use default scrollbars. Style them thin and dark.",
+    "Ensure all interactive elements have data-testid attributes.",
+    "Use 'sonner' for toasts.",
+    "Use 'lucide-react' for icons.",
+    "Never use transparent backgrounds without a blur or scrim.",
+    "Mobile-first responsive design is mandatory."
+  ],
+  "instructions_to_main_agent": "You are building a React + FastAPI expense tracker. Use the provided design system to build the frontend. The backend is FastAPI. Focus on the 'Cyber-Finance' aesthetic. Use the image URLs provided. Implement the 'Control Room' grid for the dashboard. Use Recharts for the analytics."
+}
