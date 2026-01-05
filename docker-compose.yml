@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: fintracker-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-fintracker2024}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - fintracker-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fintracker-backend
+    restart: unless-stopped
+    environment:
+      - MONGO_URL=mongodb://${MONGO_ROOT_USERNAME:-admin}:${MONGO_ROOT_PASSWORD:-fintracker2024}@mongodb:27017
+      - DB_NAME=${DB_NAME:-fintracker_db}
+      - JWT_SECRET=${JWT_SECRET:-expense-tracker-secure-jwt-secret-key-2024-cad}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - fintracker-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/api/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL:-http://localhost}
+    container_name: fintracker-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - fintracker-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  fintracker-network:
+    driver: bridge
